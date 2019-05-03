@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Enemy Script
 public class Enemy : MonoBehaviour {
 
+    public ScoreManager scoreManager;
     public float health = 100f;
     AudioSource bloodSound;
     public int killCounter = 1 ;
@@ -11,14 +13,15 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-     
-        AudioSource[] audio = GetComponents<AudioSource>();
+
+        // scoreManager = GameObject.FindWithTag("ScoreManager").GetComponent<ScoreManager>();
+        scoreManager = FindObjectOfType<ScoreManager>();
+            AudioSource[] audio = GetComponents<AudioSource>();
         bloodSound = audio [1];
         
     }
 	
-
-
+    
     public void takeDamage(float damage)
     {
         bloodSound.Play();
@@ -33,9 +36,9 @@ public class Enemy : MonoBehaviour {
 
     void Die()
     {
-
-        KillCounter.counter += killCounter;
-        Destroy(gameObject, 0f);
+        GetComponent<Animator>().Play("fallingback");
+        scoreManager.IncrementScore();
+        Destroy(gameObject, 0.4f);
        
     }
 }

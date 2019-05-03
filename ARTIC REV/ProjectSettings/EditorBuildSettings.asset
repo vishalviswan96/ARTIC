@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/__DELETED_GUID_Trash/7d224cae92e83f1428ee5c697c8b1c81
+    path: 
     guid: 7d224cae92e83f1428ee5c697c8b1c81
   - enabled: 1
     path: Assets/Scenes/Menu.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 94da6982993c6d74a9c0689ab94259df
+  - enabled: 1
+    path: Assets/Scenes/PracticeScene.unity
+    guid: d1d4cf58031739f408dd723c263e0048
   m_configObjects: {}

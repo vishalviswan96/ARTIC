@@ -7,7 +7,6 @@ public class PickUpAmmo : MonoBehaviour
 
     public GameObject pickUpButton;
     public GameObject CrossHair;
-    public GameObject Wepon1;
 
 
     // Use this for initialization
@@ -33,8 +32,5 @@ public class PickUpAmmo : MonoBehaviour
             CrossHair.gameObject.SetActive(true);
         }
     }
-    public void Wepon1True()
-    {
-        Wepon1.gameObject.SetActive(true);
-    }
+   
 }

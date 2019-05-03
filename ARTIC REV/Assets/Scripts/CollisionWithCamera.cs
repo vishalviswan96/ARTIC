@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Collision  With Camera Script
 public class CollisionWithCamera : MonoBehaviour {
 
     public bool zombieIsThere;
@@ -49,7 +50,6 @@ public class CollisionWithCamera : MonoBehaviour {
     {
         if(collision.gameObject.tag == "MainCamera")
         {
-            Debug.Log("enter");
             zombieIsThere = true;
         }
     }
@@ -57,7 +57,6 @@ public class CollisionWithCamera : MonoBehaviour {
     {
         if(collision.gameObject.tag == "MainCamera")
         {
-            Debug.Log("exit");
             zombieIsThere = false;
         }
     }

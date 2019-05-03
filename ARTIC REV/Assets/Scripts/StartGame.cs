@@ -10,6 +10,8 @@ public class StartGame : MonoBehaviour {
     public GameObject CrossHair;
     public Button Cancel;
     public GameObject startGame;
+    public GameObject shootButton;
+    public Camera fpsCamera;
 
 
     // Use this for initialization
@@ -21,16 +23,20 @@ public class StartGame : MonoBehaviour {
 	}
 	
 	
-	public void StartNewGame () {
-
+	public void StartNewGame ()
+    {
+        
         placeOnPlane = GetComponent<PlaceOnPlane>();
         Destroy(placeOnPlane);
+
         startGame.gameObject.SetActive(false);
-       // varifiedButton.gameObject.SetActive(false);
-       // Cancel.gameObject.SetActive(false);
+        //varifiedButton.gameObject.SetActive(false);
+        //Cancel.gameObject.SetActive(false);
         CrossHair.gameObject.SetActive(true);
+        shootButton.gameObject.SetActive(true);
 
     }
+
     public void CancelBack()
     {
         SceneManager.LoadScene("Menu");

@@ -22,7 +22,7 @@ public class GameControllerScript : MonoBehaviour {
     {
         if(health <= 0)
         {
-            SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
             
         }
 
@@ -36,7 +36,7 @@ public class GameControllerScript : MonoBehaviour {
 
         //coroutine to stap zombie attack for some sec
         StartCoroutine(Wait2seconds());
-        health -= 10;
+        health -= 20;
 
         //int to string 
         string stringHealth = (health).ToString();

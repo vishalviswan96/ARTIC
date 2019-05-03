@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//loading NewGame Script
 public class LoadNewGame : MonoBehaviour {
 
+    public Text highScoreText;
+    public Text killsText;
+   // public static int counter;
+
     //ref of button
-    public Button newGame;
+    public GameObject newGame;
 
 	// Use this for initialization
 	void Start () {
-      //  newGame.onClick.AddListener(LoadGame);
-		
-	}
-	
-	public void LoadGame () {
+        
+        highScoreText.text = "HIGHSCORE : " + PlayerPrefs.GetInt("HighScore").ToString();
+        killsText.text = "KILLS : " + PlayerPrefs.GetInt("KillCount", 0).ToString();
+    }
+    
 
-        SceneManager.LoadScene("StartScene");
+    public void LoadGame () {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+       
 	}
 }

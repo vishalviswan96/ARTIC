@@ -36,11 +36,14 @@ public class PlaceOnPlane : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null)
+            return;
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
-            if (m_SessionOrigin.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon) && !EventSystem.current.IsPointerOverGameObject(0))
+            if (m_SessionOrigin.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
             {
                 Pose hitPose = s_Hits[0].pose;
 

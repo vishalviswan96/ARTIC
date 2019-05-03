@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//enemy Shooting Script
 public class ShootEnemy : MonoBehaviour {
 
+ 
     public Button shootButton;
     public Camera fpsCamera;
-    public float damage = 30f;
+    public float damage = 35f;
     public GameObject bloodEffect;
     public GameObject shootingEffect;
     public int forceAdd = 200;
-    AudioSource shootSound;
-    AudioSource reloadSound;
+   
+    public AudioSource reloadSound;
     public Text ammo1Text;
     public Text ammo2Text;
     public int ammo1;
     public int ammo2;
     private bool ammoIsEmpty;
     private bool reloadCheck;
-
+    
 	// Use this for initialization
 	void Start () {
 
-        AudioSource[] audio = GetComponents <AudioSource>();
-        shootSound = audio[0];
-        reloadSound = audio[1];
+      //  audioManager = GameObject.FindObjectOfType<AudioManager>();
+        AudioSource audio = GetComponent <AudioSource>();
+     
         shootButton.onClick.AddListener(OnShoot);
-
+      
         ammo1 = 20;
-        ammo2 = 40;
+        ammo2 = 200;
         reloadCheck = true;
 	}
+
+   
 
     IEnumerator WaitForReload()
     {
@@ -39,9 +43,9 @@ public class ShootEnemy : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         reloadCheck = true;
     }
-	
-	// Update is called once per frame
-	void OnShoot ()
+
+    // Update is called once per frame
+    void OnShoot ()
     {
         //increment ammo by 20 after each round 
         if (!ammoIsEmpty && reloadCheck)
@@ -53,6 +57,7 @@ public class ShootEnemy : MonoBehaviour {
                 reloadCheck = false;
                 //coroutine for reload
                 StartCoroutine(WaitForReload());
+                //AudioManager.instance.ReloadSound();
                 reloadSound.Play();
             }
 
@@ -64,7 +69,8 @@ public class ShootEnemy : MonoBehaviour {
             ammo2 -= 1;
             string ammo2String = (ammo2).ToString();
             ammo2Text.text = "/ " + ammo2String;
-            shootSound.Play();
+            AudioManager.instance.ShootSound();
+            //shootSound.Play();
 
             //if ammo2 zero empty magzin overwrit ammo 1 string
             if (ammo2 == 0)
@@ -96,10 +102,11 @@ public class ShootEnemy : MonoBehaviour {
                 }
                 if (hit.rigidbody != null)
                 {
-                    hit.rigidbody.AddForce(hit.normal * forceAdd);
+                    hit.rigidbody.AddForce(-hit.normal * forceAdd);
                 }
             }
         }
+        
     
 
     }
